@@ -87,7 +87,7 @@ class DjangoTracing(object):
             headers[k] = v
 
         # start new span from trace info
-        operation_name = request.path
+        operation_name = '{}: {}'.format(request.method, request.path)
         try:
             span_ctx = self.tracer.extract(opentracing.Format.HTTP_HEADERS,
                                            headers)
